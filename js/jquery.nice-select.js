@@ -7,40 +7,40 @@
   $.fn.niceSelect = function(method) {
     
     // Methods
-    if (typeof method == 'string') {      
-      if (method == 'update') {
-        this.each(function() {
-          var $select = $(this);
-          var $dropdown = $(this).next('.nice-select');
-          var open = $dropdown.hasClass('open');
+    // if (typeof method == 'string') {      
+    //   if (method == 'update') {
+    //     this.each(function() {
+    //       var $select = $(this);
+    //       var $dropdown = $(this).next('.nice-select');
+    //       var open = $dropdown.hasClass('open');
           
-          if ($dropdown.length) {
-            $dropdown.remove();
-            create_nice_select($select);
+    //       if ($dropdown.length) {
+    //         $dropdown.remove();
+    //         create_nice_select($select);
             
-            if (open) {
-              $select.next().trigger('click');
-            }
-          }
-        });
-      } else if (method == 'destroy') {
-        this.each(function() {
-          var $select = $(this);
-          var $dropdown = $(this).next('.nice-select');
+    //         if (open) {
+    //           $select.next().trigger('click');
+    //         }
+    //       }
+    //     });
+    //   } else if (method == 'destroy') {
+    //     this.each(function() {
+    //       var $select = $(this);
+    //       var $dropdown = $(this).next('.nice-select');
           
-          if ($dropdown.length) {
-            $dropdown.remove();
-            $select.css('display', '');
-          }
-        });
-        if ($('.nice-select').length == 0) {
-          $(document).off('.nice_select');
-        }
-      } else {
-        console.log('Method "' + method + '" does not exist.')
-      }
-      return this;
-    }
+    //       if ($dropdown.length) {
+    //         $dropdown.remove();
+    //         $select.css('display', '');
+    //       }
+    //     });
+    //     if ($('.nice-select').length == 0) {
+    //       $(document).off('.nice_select');
+    //     }
+    //   } else {
+    //     console.log('Method "' + method + '" does not exist.')
+    //   }
+    //   return this;
+    // }
       
     // Hide native select
     this.hide();
@@ -188,3 +188,76 @@
   };
 
 }(jQuery));
+
+
+const niceSelectJS = function(selectName) {
+  selectName = document.querySelectorAll(selectName);
+  // console.log(selectName);
+
+  selectName.forEach(select => {
+    select.style.display = 'none';
+    
+    create_nice_select(select);
+
+    // if (!select.nextElementSibling.classList.contains('nice-select')) {
+      
+    // }
+
+  });
+
+  
+
+  function create_nice_select(select) {
+    let divSelect = document.createElement( 'div' );
+    let classes = select.getAttribute('class');
+    if (!classes == '') {
+      divSelect.classList.add(classes);
+    }
+    divSelect.classList.add("nice-select");
+    divSelect.setAttribute('tabindex', select.getAttribute('disabled') ? null : '0');
+    divSelect.innerHTML = '<span class="current"></span><ul class="list"></ul>';
+    // addClass($select.attr('disabled') ? 'disabled' : '') disable özelliği eklenicek
+
+    select.parentNode.insertBefore( divSelect, select.nextSibling );
+
+    let dropdown = select.nextElementSibling;
+    let _options = select.getElementsByTagName('option');
+    let selected = select.getElementsByTagName('option:selected');
+
+    dropdown.querySelector('.current').innerHTML = select.getAttribute('data-display') || 'Seçim yapınız';
+
+    for (const child of _options) {
+        let listUl = dropdown.querySelector('.list');
+        let listItem = document.createElement('li');
+        listItem.innerHTML = child.textContent;
+        listItem.setAttribute('data-value', child.value)
+        listItem.classList.add('option');
+        if (child.getAttribute('disabled') == '' || child.getAttribute('disabled') == 'disabled') {
+          listItem.classList.add('disabled');
+        } else if (child.getAttribute('selected') == '' || child.getAttribute('selected') == 'selected') {
+          listItem.classList.add('selected');
+        }
+
+        listUl.appendChild(listItem);
+
+    }
+  }
+
+
+
+  document.querySelectorAll('.nice-select').forEach(link => {
+    link.addEventListener('click', event => {
+        // document.querySelectorAll('.nice-select').forEach(el => {
+        //     el.classList.remove('open');
+        // });
+
+        console.log(event);
+
+        event.target.classList.toggle('open');
+    }); 
+});
+
+
+
+
+};
