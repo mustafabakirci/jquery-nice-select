@@ -1,5 +1,13 @@
 # Nice Select without jQuery
 
+## Changes
+* You don't need JQuery anymore.
+* Methods removed (for now).
+* Keyboard actions removed.
+* The data-display attribute is assigned to the original select element.(First example in the js-index.html)
+
+## Usage
+
 Include just the plugin.
 
 ```html

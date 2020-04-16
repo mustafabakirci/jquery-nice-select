@@ -26,8 +26,8 @@ const niceSelectJS = function(selectName) {
       let _options = select.getElementsByTagName('option');
       let selected = select.getElementsByTagName('option:selected');
   
-      dropdown.querySelector('.current').innerHTML = select.getAttribute('data-display') || 'Seçim yapınız';
-  
+      dropdown.querySelector('.current').innerHTML = select.getAttribute('data-display') || select.firstChild.nextElementSibling.innerText;
+
       for (const child of _options) {
           let listUl = dropdown.querySelector('.list');
           let listItem = document.createElement('li');
