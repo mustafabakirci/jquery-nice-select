@@ -1,5 +1,7 @@
 # Nice Select without jQuery
 
+[Demo](https://mustafabakirci.github.io/js-nice-select/js-index.html)
+
 ## Changes
 * You don't need JQuery anymore.
 * Methods removed (for now).
@@ -20,6 +22,7 @@ and initialize the plugin.
 ```javascript
 niceSelectJS('select');
 ```
+
 
 # jQuery Nice Select
 
