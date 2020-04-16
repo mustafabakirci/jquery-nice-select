@@ -58,15 +58,18 @@ const niceSelectJS = function(selectName) {
       link.addEventListener('click', function(){ 
         if(this.classList.contains('open')) {
           this.classList.remove('open');
-          this.querySelector('.focus').classList.remove('focus');
+          if(this.querySelector('.focus') !== null){
+            this.querySelector('.focus').classList.remove('focus');
+          }
         } else {
           allSelects.forEach(el => {
             el.classList.remove('open');
           });
           this.classList.add('open');
-          this.querySelector('.selected').classList.add('focus');
+          if(this.querySelector('.selected') !== null){
+            this.querySelector('.selected').classList.add('focus');
+          } 
         }
-  
       }); 
     });
   
@@ -80,9 +83,20 @@ const niceSelectJS = function(selectName) {
     });
   
   // Option click
-    // allSelects.addEventListener('click', function(){
-  
-    // });
-  
+  document.querySelectorAll('.nice-select .option:not(.disabled)').forEach(link => {
+     link.addEventListener('click', function(e){
+        let option = e.target;
+        let dropdown = option.closest('.nice-select');
+        if( dropdown.querySelector('.selected') !== null){
+          dropdown.querySelector('.selected').classList.remove('selected');
+         }
+        option.classList.add('selected');
+        let text = option.textContent;
+        dropdown.querySelector('.current').textContent = text;
+        dropdown.previousSibling.value = option.getAttribute('data-value');
+      });
+    });
+    
+    return this;
   
   };
