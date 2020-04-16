@@ -7,13 +7,7 @@ const niceSelectJS = function(selectName) {
       
       create_nice_select(select);
   
-      // if (!select.nextElementSibling.classList.contains('nice-select')) {
-        
-      // }
-  
     });
-  
-    
   
     function create_nice_select(select) {
       let divSelect = document.createElement( 'div' );

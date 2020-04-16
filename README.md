@@ -1,3 +1,9 @@
+# Nice Select without jQuery
+
+```javascript
+niceSelectJS('select');
+```
+
 # jQuery Nice Select
 
 A lightweight jQuery plugin that replaces native select elements with customizable dropdowns.
