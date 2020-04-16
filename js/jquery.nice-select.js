@@ -7,40 +7,40 @@
   $.fn.niceSelect = function(method) {
     
     // Methods
-    // if (typeof method == 'string') {      
-    //   if (method == 'update') {
-    //     this.each(function() {
-    //       var $select = $(this);
-    //       var $dropdown = $(this).next('.nice-select');
-    //       var open = $dropdown.hasClass('open');
+    if (typeof method == 'string') {      
+      if (method == 'update') {
+        this.each(function() {
+          var $select = $(this);
+          var $dropdown = $(this).next('.nice-select');
+          var open = $dropdown.hasClass('open');
           
-    //       if ($dropdown.length) {
-    //         $dropdown.remove();
-    //         create_nice_select($select);
+          if ($dropdown.length) {
+            $dropdown.remove();
+            create_nice_select($select);
             
-    //         if (open) {
-    //           $select.next().trigger('click');
-    //         }
-    //       }
-    //     });
-    //   } else if (method == 'destroy') {
-    //     this.each(function() {
-    //       var $select = $(this);
-    //       var $dropdown = $(this).next('.nice-select');
+            if (open) {
+              $select.next().trigger('click');
+            }
+          }
+        });
+      } else if (method == 'destroy') {
+        this.each(function() {
+          var $select = $(this);
+          var $dropdown = $(this).next('.nice-select');
           
-    //       if ($dropdown.length) {
-    //         $dropdown.remove();
-    //         $select.css('display', '');
-    //       }
-    //     });
-    //     if ($('.nice-select').length == 0) {
-    //       $(document).off('.nice_select');
-    //     }
-    //   } else {
-    //     console.log('Method "' + method + '" does not exist.')
-    //   }
-    //   return this;
-    // }
+          if ($dropdown.length) {
+            $dropdown.remove();
+            $select.css('display', '');
+          }
+        });
+        if ($('.nice-select').length == 0) {
+          $(document).off('.nice_select');
+        }
+      } else {
+        console.log('Method "' + method + '" does not exist.')
+      }
+      return this;
+    }
       
     // Hide native select
     this.hide();
@@ -188,6 +188,3 @@
   };
 
 }(jQuery));
-
-
-

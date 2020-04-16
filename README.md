@@ -1,5 +1,14 @@
 # Nice Select without jQuery
 
+Include just the plugin.
+
+```html
+<link rel="stylesheet" href="path/to/nice-select.css">
+<script src="path/to/nice-select.js"></script>
+```
+
+and initialize the plugin.
+
 ```javascript
 niceSelectJS('select');
 ```
