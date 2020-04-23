@@ -13,18 +13,22 @@ const niceSelectJS = function(selectName , options) {
           settings[userOpt] = options[userOpt];
       }
     }
-    if (!(settings.activeMobile) && isMobile) {
-      return;
-    }
 
     selectName = document.querySelectorAll(selectName);
     selectName.forEach(select => {
+      if (!(settings.activeMobile) && isMobile) {
+        if(select.getAttribute('data-display') !== null ) {
+          var option = document.createElement("option");
+          option.text = select.getAttribute('data-display');
+          select.add(option, select[0]);
+          option.setAttribute('selected', true);
+        }
+        return;
+      }
       select.style.display = 'none';
       if (!(select.nextElementSibling)) {
         create_nice_select(select);
       }
-
-      
     });
   
     function create_nice_select(select) {
