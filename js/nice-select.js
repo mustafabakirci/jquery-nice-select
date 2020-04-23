@@ -31,7 +31,7 @@ const niceSelectJS = function(selectName , options) {
       let divSelect = document.createElement( 'div' );
       let classes = select.getAttribute('class');
       if (!classes == '') {
-        divSelect.classList.add(classes);
+        divSelect.className = 'nice-select '+classes+'';
       }
       divSelect.classList.add("nice-select");
       divSelect.setAttribute('tabindex', select.getAttribute('disabled') ? null : '0');
